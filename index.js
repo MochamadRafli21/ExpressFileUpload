@@ -25,7 +25,9 @@ app.post('/file', upload.single('file'), (req, res) => {
 })
 
 app.use('/preview', express.static(path.join(__dirname, 'file')))
-app.use(cors())
+app.use(cors({
+  origin: process.env.CLIENT_HOST
+}))
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })
